@@ -11,3 +11,7 @@ NIM : 24012217
 ### Tampilan Login
 
 ![Preview](screenshoot/login.png)
+
+### Tampilan Home
+
+![Preview](screenshoot/home.png)
