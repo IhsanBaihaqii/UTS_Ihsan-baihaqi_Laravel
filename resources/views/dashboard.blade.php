@@ -1,242 +1,140 @@
 <!DOCTYPE html>
-<html>
-    <head>
-        <title>Dashboard</title>
-        <style>
-        body {
-            font-family: Arial, sans-serif;
-            background-color: #f4f4f4;
-            margin: 0;
-            padding: 20px;
-        }
-        header {
-            margin-bottom: 20px;
-            display: flex;
-            justify-content: space-between;
-        }
-        .cotainer1 {
-            color: white;
-            text-align: center;
-        }
-        .container2 {
-            border-radius: 5px;
-        }
-        h2, h3 {
-            color: #333;
-        }
-        a {
-            display: inline-block;
-            margin-top: 5px;
-            padding: 10px 15px;
-            background-color: #007BFF;
-            color: white;
-            text-decoration: none;
-            border-radius: 4px;
-        }
-        a:hover {
-            background-color: #0056b3;
-        }
+<html lang="id">
 
-        main{
-            background-color: white;
-            padding: 20px;
-            border-radius: 5px;
-            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-        }
+<head>
 
-        form {
-            width: 90%;
-            margin-bottom: 30px;
-            padding: 20px;
-        }
-        #list_barang {
-            width: 100%;
-            padding: 10px;
-            margin: 10px 0;
-            border: 1px solid #ccc;
-            border-radius: 4px;
-        }
-        input[type="text"], input[type="number"] {
-            width: 100%;
-            padding: 10px;
-            margin: 10px 0;
-            border: 1px solid #ccc;
-            border-radius: 4px;
-        }
-        .container {
-            display: flex;
-        }
-        button {
-            width: 40%;
-            padding: 10px;
-            margin: 10px 1%;
-            border: none;
-            border-radius: 4px;
-            background-color: #0056b3;
-            color: white;
-            cursor: pointer;
-        }
-        button[type="reset"] {
-            background-color: white;
-            color: #333;
-            border: 1px solid #ccc;
-        }
-        button[name="hapus"] {
-            background-color: red;
-            color: white    ;
-            border: 1px solid #ccc;
-        }
+    <meta charset="UTF-8">
 
-        table {
-            width: 100%;
-            border-collapse: collapse;
-        }
-        table, th, td {
-            border: 1px solid #ccc;
-        }
-        th, td {
-            padding: 10px;
-            text-align: left;
-        }
-        </style>
-    </head>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    <body>
-        <header>
-            <div class="container1">
-                <h1>--Polgan Mart--</h1>
-                <p>Sistem penjualan sederhana</p>
+    <title>Invoice Automation</title>
+
+    <!-- Tailwind CSS -->
+    <link
+        href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css"
+        rel="stylesheet"
+    >
+
+    <!-- Font Awesome -->
+    <link
+        rel="stylesheet"
+        href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css"
+    >
+
+</head>
+
+<body class="bg-gray-100">
+
+    <!-- SIDEBAR -->
+    <div class="flex h-screen">
+
+        <div class="w-64 bg-gray-800 text-white flex flex-col justify-between fixed h-screen">
+
+            <div class="p-4">
+
+                <h1 class="text-2xl font-bold mb-6">
+                    IHSAN BAIHAQI
+                </h1>
+
+                <nav>
+
+                    <a
+                        href="{{ url('/dashboard') }}"
+                        class="block py-2 px-4 rounded hover:bg-gray-700 transition duration-200
+                        {{ request()->is('dashboard') ? 'bg-gray-700' : '' }}"
+                    >
+                        Home
+                    </a>
+
+                    <a
+                        href="{{ url('/dashboard/barang') }}"
+                        class="block py-2 px-4 rounded hover:bg-gray-700 transition duration-200
+                        {{ request()->is('dashboard/barang') ? 'bg-gray-700' : '' }}"
+                    >
+                        Barang
+                    </a>
+
+                    <a
+                        href="{{ url('/dashboard/pelanggan') }}"
+                        class="block py-2 px-4 rounded hover:bg-gray-700 transition duration-200
+                        {{ request()->is('dashboard/pelanggan') ? 'bg-gray-700' : '' }}"
+                    >
+                        Pelanggan
+                    </a>
+
+                    <a
+                        href="{{ url('/dashboard/transaksi') }}"
+                        class="block py-2 px-4 rounded hover:bg-gray-700 transition duration-200
+                        {{ request()->is('dashboard/transaksi') ? 'bg-gray-700' : '' }}"
+                    >
+                        Transaksi
+                    </a>
+
+                    <a
+                        href="#"
+                        class="block py-2 px-4 rounded hover:bg-gray-700 transition duration-200"
+                    >
+                        Settings
+                    </a>
+
+                </nav>
+
             </div>
-            <div class="container2">
-                <h2>Selamat datang, {{ session("username") }}</h2>
-                <p>Role: {{ session("role") }}</p>
-                <a href="{{ route('logout.index') }}">Logout</a>
+
+            <div class="p-4">
+
+                <a
+                    href="{{ route('logout.index') }}"
+                    class="block text-center w-full bg-red-500 hover:bg-red-600 text-white py-2 px-4 rounded transition duration-200"
+                >
+                    Logout
+                </a>
+
             </div>
-        </header>
 
-        <main>
-            <!-- input Kode Barang, nama barang, harga, jumlah -->
-            <form action="{{ route("dashboard.barang.aksi") }}" method="post">
-                @csrf
-                <label for="list_barang">Kode Barang</label>
-                <select name="list_barang" id="list_barang">
-                    <option disabled selected>-- Pilih Kode Barang --</option>
+        </div>
 
-                    @foreach ($list_barang as $kode => $item)
-                    <option value="{{ $kode }}">
-                         {{ $kode }} | {{ $item["nama"] }}
-                    </option>
-                    @endforeach
+        <!-- MAIN CONTENT -->
+        <div class="flex-grow p-6 bg-gray-100 pl-64">
 
-                </select>
+            @if (request()->is('dashboard/barang'))
 
-                <label for="kode_barang">Kode Barang</label>
-                <input type="text" name="kode_barang" id="kode_barang" placeholder="Masukkan Kode Barang" required><br>
-                <label for="nama_barang">Nama Barang</label>
-                <input type="text" name="nama_barang" id="nama_barang" placeholder="Masukkan Kode Barang" required><br>
-                <label for="harga_barang">Harga</label>
-                <input type="number" name="harga_barang" id="harga_barang" placeholder="Masukkan Harga Barang" required><br>
-                <label for="jumlah">Jumlah</label>
-                <input type="number" name="jumlah" id="jumlah" placeholder="Masukkan Jumlah" required><br>
-                <div class="container">
-                    <button type="submit" value="add" name="add"> Tambah </button>
-                    <button type="reset" value="Batal">Batal</button>
-                </div>
-            </form>
-            <h2>Daftar Barang</h2>
-            <p>Menampilkan barang yang di input</p>
-            @php
-                $data_barang = session("data_barang") ?? [];
-                $grandtotal = 0;
-            @endphp
+                @include('dashboard.barang')
 
-            @if (session("data_barang"))
-                <table border="1" cellpadding="10" cellspacing="0">
-                <tr>
-                    <th>Kode Barang</th>
-                    <th>Nama Barang</th>
-                    <th>Harga Barang (Rp)</th>
-                    <th>Jumlah</th>
-                    <th>Total (Rp)</th>
-                    <th>Action</th>
-                </tr>
-                @foreach ($data_barang as $kode => $item)
-                    @php
-                        // hitung total
-                        $total_harga = $item["harga"] * $item["jumlah"];
-                        $grandtotal += $total_harga;
+            @elseif (request()->is('dashboard/pelanggan'))
 
-                        // hitung diskon
-                        if ($grandtotal == 0) {
-                            $d = "0%";
-                            $diskon = 0;
-                        } elseif ($grandtotal < 50000) {
-                            $d = "5%";
-                            $diskon = 0.05 * $grandtotal;
-                        } elseif ($grandtotal <= 100000) {
-                            $d = "10%";
-                            $diskon = 0.10 * $grandtotal;
-                        } else {
-                            $d = "15%";
-                            $diskon = 0.15 * $grandtotal;
-                        }
-                        $totalbayar = $grandtotal - $diskon;
+                @include('dashboard.pelanggan')
 
-                    @endphp
-                    <tr>
-                        <td>{{ $kode }}</td>
-                        <td>{{ $item["nama"] }}</td>
-                        <td style='text-align:right;'>Rp {{ number_format($item["harga"],  0, ',', '.'); }}</td>
-                        <td style='text-align:center;'>{{ $item["jumlah"] }}</td>
-                        <td style='text-align:right;'>Rp {{ number_format($total_harga,  0, ',', '.'); }}</td>
-                        <td style='text-align:center;'> <form method='post' action='{{ route("dashboard.barang.aksi") }}'> @csrf <button type='submit' name='delete' value="{{ $kode }}">Hapus</button></form> </td>
-                    </tr>
-                @endforeach
+            @elseif (request()->is('dashboard/transaksi'))
 
-                <!-- Total Belanja, Diskon, Total Bayar -->
-                <tr>
-                    <td colspan="4" style="text-align:right; padding-right:20px"><strong>Total Belanja</strong></td>
-                    <td style="text-align:right;"><strong>Rp {{ number_format($grandtotal,  0, ',', '.'); }}</strong></td>
-                </tr>
-                <tr>
-                    <td colspan="4" style="text-align:right; padding-right:20px"><strong>Diskon {{ $d }}</strong></td>
-                    <td style="text-align:right;"><strong>Rp {{ number_format($diskon,  0, ',', '.'); }}</strong></td>
-                </tr>
-                <tr>
-                    <td colspan="4" style="text-align:right; padding-right:20px"><strong>Total Bayar</strong></td>
-                    <td style="text-align:right;"><strong>Rp {{ number_format($totalbayar,  0, ',', '.'); }}</strong></td>
-                </tr>
-                </table>
-                <!-- Reset Keranjang -->
-                <form action="dashboard.php" method="get" style="margin-top:20px;">
-                    <button type="submit" value="reset" name="reset">Reset Keranjang</button>
-                </form>
+                @include('dashboard.transaksi')
+
             @else
-                <h3>Belum ada daftar barang</h3>
+
+                <div class="bg-white p-6 rounded shadow">
+
+                    <h2 class="text-2xl font-bold mb-2">
+                        NAMA: IHSAN BAIHAQI
+                    </h2>
+                    <h3 class="text-lg font-semibold mb-4">
+                        NIM: 24012217
+                    </h3>
+                    <h3 class="text-lg font-semibold mb-4">
+                        KELAS: 24M11
+                    </h3>
+
+                    <p class="text-gray-600">
+                        Selamat datang di dashboard aplikasi saya.
+                    </p>
+
+                </div>
+
             @endif
 
-        </main>
-    </body>
-   
-    <script>
-        const selectBarang =  document.getElementById("list_barang");
-        const inputKodeBarang = document.getElementById("kode_barang");
-        const inputNamaBarang = document.getElementById("nama_barang");
-        const inputHargaBarang = document.getElementById("harga_barang");
-        const inputJumlahBarang = document.getElementById("jumlah");
+        </div>
 
-        let daftarBarang = @json($list_barang) ?? [];
+    </div>
 
-        selectBarang.addEventListener("change", function(){
-            inputKodeBarang.value = selectBarang.value;
-            inputNamaBarang.value = daftarBarang[selectBarang.value]["nama"];
-            inputHargaBarang.value = daftarBarang[selectBarang.value]["harga"];
-            return
-        });
-
-    </script>
+</body>
 
 </html>
