@@ -5,28 +5,27 @@
 
         <div>
             <h1 class="text-3xl font-bold text-gray-800">
-                Polgan Mart
+                CRUD Barang
             </h1>
 
             <p class="text-gray-500">
-                Sistem penjualan sederhana
+                Laravel CRUD Barang
             </p>
         </div>
 
         <div class="text-right">
 
             <h2 class="text-xl font-semibold text-gray-800">
-                Selamat datang,
                 {{ session('username') }}
             </h2>
 
             <p class="text-gray-500 mb-2">
-                Role: {{ session('role') }}
+                {{ session('role') }}
             </p>
 
             <a
                 href="{{ route('logout.index') }}"
-                class="inline-block bg-blue-500 hover:bg-blue-600 text-white px-4 py-2 rounded transition duration-200"
+                class="inline-block bg-red-500 hover:bg-red-600 text-white px-4 py-2 rounded"
             >
                 Logout
             </a>
@@ -38,143 +37,91 @@
     <!-- FORM -->
     <div class="bg-white rounded shadow p-6 mb-6">
 
+        <h2 class="text-xl font-bold mb-4">
+            Tambah Barang
+        </h2>
+
         <form
-            action="{{ route('dashboard.barang.aksi') }}"
-            method="post"
+            action="{{ route('barang.store') }}"
+            method="POST"
         >
 
             @csrf
 
-            <div class="mb-4">
+            <div class="grid grid-cols-2 gap-4">
 
-                <label
-                    for="list_barang"
-                    class="block mb-2 font-medium text-gray-700"
-                >
-                    Kode Barang
-                </label>
+                <div>
 
-                <select
-                    name="list_barang"
-                    id="list_barang"
-                    class="w-full border border-gray-300 rounded px-4 py-2"
-                >
+                    <label class="block mb-2 text-gray-700">
+                        Kode Barang
+                    </label>
 
-                    <option disabled selected>
-                        -- Pilih Kode Barang --
-                    </option>
+                    <input
+                        type="text"
+                        name="kode_barang"
+                        placeholder="Masukkan kode barang"
+                        class="w-full border border-gray-300 rounded px-4 py-2"
+                        required
+                    >
 
-                    @foreach ($list_barang as $kode => $item)
+                </div>
 
-                        <option value="{{ $kode }}">
-                            {{ $kode }} | {{ $item['nama'] }}
-                        </option>
+                <div>
 
-                    @endforeach
+                    <label class="block mb-2 text-gray-700">
+                        Nama Barang
+                    </label>
 
-                </select>
+                    <input
+                        type="text"
+                        name="nama_barang"
+                        placeholder="Masukkan nama barang"
+                        class="w-full border border-gray-300 rounded px-4 py-2"
+                        required
+                    >
 
-            </div>
+                </div>
 
-            <div class="mb-4">
+                <div>
 
-                <label
-                    for="kode_barang"
-                    class="block mb-2 font-medium text-gray-700"
-                >
-                    Kode Barang
-                </label>
+                    <label class="block mb-2 text-gray-700">
+                        Harga Barang
+                    </label>
 
-                <input
-                    type="text"
-                    name="kode_barang"
-                    id="kode_barang"
-                    placeholder="Masukkan Kode Barang"
-                    required
-                    class="w-full border border-gray-300 rounded px-4 py-2"
-                >
+                    <input
+                        type="number"
+                        name="harga_barang"
+                        placeholder="Masukkan harga"
+                        class="w-full border border-gray-300 rounded px-4 py-2"
+                        required
+                    >
 
-            </div>
+                </div>
 
-            <div class="mb-4">
+                <div>
 
-                <label
-                    for="nama_barang"
-                    class="block mb-2 font-medium text-gray-700"
-                >
-                    Nama Barang
-                </label>
+                    <label class="block mb-2 text-gray-700">
+                        Jumlah
+                    </label>
 
-                <input
-                    type="text"
-                    name="nama_barang"
-                    id="nama_barang"
-                    placeholder="Masukkan Nama Barang"
-                    required
-                    class="w-full border border-gray-300 rounded px-4 py-2"
-                >
+                    <input
+                        type="number"
+                        name="jumlah"
+                        placeholder="Masukkan jumlah"
+                        class="w-full border border-gray-300 rounded px-4 py-2"
+                        required
+                    >
+
+                </div>
 
             </div>
 
-            <div class="mb-4">
-
-                <label
-                    for="harga_barang"
-                    class="block mb-2 font-medium text-gray-700"
-                >
-                    Harga
-                </label>
-
-                <input
-                    type="number"
-                    name="harga_barang"
-                    id="harga_barang"
-                    placeholder="Masukkan Harga Barang"
-                    required
-                    class="w-full border border-gray-300 rounded px-4 py-2"
-                >
-
-            </div>
-
-            <div class="mb-6">
-
-                <label
-                    for="jumlah"
-                    class="block mb-2 font-medium text-gray-700"
-                >
-                    Jumlah
-                </label>
-
-                <input
-                    type="number"
-                    name="jumlah"
-                    id="jumlah"
-                    placeholder="Masukkan Jumlah"
-                    required
-                    class="w-full border border-gray-300 rounded px-4 py-2"
-                >
-
-            </div>
-
-            <div class="flex gap-4">
-
-                <button
-                    type="submit"
-                    value="add"
-                    name="add"
-                    class="bg-blue-500 hover:bg-blue-600 text-white px-6 py-2 rounded transition duration-200"
-                >
-                    Tambah
-                </button>
-
-                <button
-                    type="reset"
-                    class="bg-gray-200 hover:bg-gray-300 text-gray-700 px-6 py-2 rounded transition duration-200"
-                >
-                    Batal
-                </button>
-
-            </div>
+            <button
+                type="submit"
+                class="mt-6 bg-blue-500 hover:bg-blue-600 text-white px-6 py-2 rounded"
+            >
+                Tambah Barang
+            </button>
 
         </form>
 
@@ -183,20 +130,11 @@
     <!-- TABLE -->
     <div class="bg-white rounded shadow p-6">
 
-        <h2 class="text-2xl font-bold text-gray-800 mb-2">
-            Daftar Barang
+        <h2 class="text-2xl font-bold text-gray-800 mb-4">
+            Data Barang
         </h2>
 
-        <p class="text-gray-500 mb-6">
-            Menampilkan barang yang di input
-        </p>
-
-        @php
-            $data_barang = session('data_barang') ?? [];
-            $grandtotal = 0;
-        @endphp
-
-        @if (session('data_barang'))
+        @if ($barang->count())
 
             <div class="overflow-x-auto">
 
@@ -206,24 +144,24 @@
 
                         <tr>
 
-                            <th class="border p-3 text-left">
+                            <th class="border p-3">
+                                No
+                            </th>
+
+                            <th class="border p-3">
                                 Kode Barang
                             </th>
 
-                            <th class="border p-3 text-left">
+                            <th class="border p-3">
                                 Nama Barang
                             </th>
 
-                            <th class="border p-3 text-left">
-                                Harga Barang
+                            <th class="border p-3">
+                                Harga
                             </th>
 
-                            <th class="border p-3 text-left">
+                            <th class="border p-3">
                                 Jumlah
-                            </th>
-
-                            <th class="border p-3 text-left">
-                                Total
                             </th>
 
                             <th class="border p-3 text-center">
@@ -236,81 +174,67 @@
 
                     <tbody>
 
-                        @foreach ($data_barang as $kode => $item)
-
-                            @php
-
-                                $total_harga =
-                                    $item['harga'] * $item['jumlah'];
-
-                                $grandtotal += $total_harga;
-
-                                if ($grandtotal == 0) {
-
-                                    $d = '0%';
-                                    $diskon = 0;
-
-                                } elseif ($grandtotal < 50000) {
-
-                                    $d = '5%';
-                                    $diskon = 0.05 * $grandtotal;
-
-                                } elseif ($grandtotal <= 100000) {
-
-                                    $d = '10%';
-                                    $diskon = 0.10 * $grandtotal;
-
-                                } else {
-
-                                    $d = '15%';
-                                    $diskon = 0.15 * $grandtotal;
-                                }
-
-                                $totalbayar = $grandtotal - $diskon;
-
-                            @endphp
+                        @foreach ($barang as $item)
 
                             <tr>
 
-                                <td class="border p-3">
-                                    {{ $kode }}
+                                <td class="border p-3 text-center">
+                                    {{ $loop->iteration }}
                                 </td>
 
                                 <td class="border p-3">
-                                    {{ $item['nama'] }}
+                                    {{ $item->kode_barang }}
+                                </td>
+
+                                <td class="border p-3">
+                                    {{ $item->nama_barang }}
                                 </td>
 
                                 <td class="border p-3 text-right">
-                                    Rp {{ number_format($item['harga'], 0, ',', '.') }}
+                                    Rp {{ number_format($item->harga_barang, 0, ',', '.') }}
                                 </td>
 
                                 <td class="border p-3 text-center">
-                                    {{ $item['jumlah'] }}
+                                    {{ $item->jumlah }}
                                 </td>
 
-                                <td class="border p-3 text-right">
-                                    Rp {{ number_format($total_harga, 0, ',', '.') }}
-                                </td>
+                                <td class="border p-3">
 
-                                <td class="border p-3 text-center">
+                                    <div class="flex gap-2 justify-center">
 
-                                    <form
-                                        method="post"
-                                        action="{{ route('dashboard.barang.aksi') }}"
-                                    >
-
-                                        @csrf
-
+                                        <!-- EDIT -->
                                         <button
-                                            type="submit"
-                                            name="delete"
-                                            value="{{ $kode }}"
-                                            class="bg-red-500 hover:bg-red-600 text-white px-4 py-2 rounded transition duration-200"
+                                            onclick="openModal(
+                                                '{{ $item->id }}',
+                                                '{{ $item->kode_barang }}',
+                                                '{{ $item->nama_barang }}',
+                                                '{{ $item->harga_barang }}',
+                                                '{{ $item->jumlah }}'
+                                            )"
+                                            class="bg-yellow-500 hover:bg-yellow-600 text-white px-4 py-2 rounded"
                                         >
-                                            Hapus
+                                            Edit
                                         </button>
 
-                                    </form>
+                                        <!-- DELETE -->
+                                        <form
+                                            action="{{ route('barang.destroy', $item->id) }}"
+                                            method="POST"
+                                        >
+
+                                            @csrf
+                                            @method('DELETE')
+
+                                            <button
+                                                type="submit"
+                                                class="bg-red-500 hover:bg-red-600 text-white px-4 py-2 rounded"
+                                            >
+                                                Hapus
+                                            </button>
+
+                                        </form>
+
+                                    </div>
 
                                 </td>
 
@@ -318,118 +242,183 @@
 
                         @endforeach
 
-                        <tr>
-
-                            <td
-                                colspan="4"
-                                class="border p-3 text-right font-bold"
-                            >
-                                Total Belanja
-                            </td>
-
-                            <td class="border p-3 text-right font-bold">
-                                Rp {{ number_format($grandtotal, 0, ',', '.') }}
-                            </td>
-
-                            <td class="border"></td>
-
-                        </tr>
-
-                        <tr>
-
-                            <td
-                                colspan="4"
-                                class="border p-3 text-right font-bold"
-                            >
-                                Diskon {{ $d }}
-                            </td>
-
-                            <td class="border p-3 text-right font-bold">
-                                Rp {{ number_format($diskon, 0, ',', '.') }}
-                            </td>
-
-                            <td class="border"></td>
-
-                        </tr>
-
-                        <tr>
-
-                            <td
-                                colspan="4"
-                                class="border p-3 text-right font-bold"
-                            >
-                                Total Bayar
-                            </td>
-
-                            <td class="border p-3 text-right font-bold">
-                                Rp {{ number_format($totalbayar, 0, ',', '.') }}
-                            </td>
-
-                            <td class="border"></td>
-
-                        </tr>
-
                     </tbody>
 
                 </table>
 
             </div>
 
-            <form
-                action="{{ route('dashboard.reset') }}"
-                method="get"
-                class="mt-6"
-            >
-
-                <button
-                    type="submit"
-                    class="bg-yellow-500 hover:bg-yellow-600 text-white px-6 py-2 rounded transition duration-200"
-                >
-                    Reset Keranjang
-                </button>
-
-            </form>
-
         @else
 
-            <div
-                class="bg-yellow-100 border border-yellow-300 text-yellow-700 px-4 py-3 rounded"
-            >
-                Belum ada daftar barang
+            <div class="bg-yellow-100 text-yellow-700 p-4 rounded">
+
+                Belum ada data barang
+
             </div>
 
         @endif
 
     </div>
 
+    <!-- MODAL EDIT -->
+    <div
+        id="editModal"
+        class="fixed inset-0 bg-black bg-opacity-50 hidden items-center justify-center"
+    >
+
+        <div class="bg-white rounded p-6 w-full max-w-lg">
+
+            <h2 class="text-2xl font-bold mb-4">
+                Edit Barang
+            </h2>
+
+            <form
+                id="editForm"
+                method="POST"
+            >
+
+                @csrf
+                @method('PUT')
+
+                <div class="mb-4">
+
+                    <label class="block mb-2">
+                        Kode Barang
+                    </label>
+
+                    <input
+                        type="text"
+                        name="kode_barang"
+                        id="edit_kode_barang"
+                        class="w-full border border-gray-300 rounded px-4 py-2"
+                    >
+
+                </div>
+
+                <div class="mb-4">
+
+                    <label class="block mb-2">
+                        Nama Barang
+                    </label>
+
+                    <input
+                        type="text"
+                        name="nama_barang"
+                        id="edit_nama_barang"
+                        class="w-full border border-gray-300 rounded px-4 py-2"
+                    >
+
+                </div>
+
+                <div class="mb-4">
+
+                    <label class="block mb-2">
+                        Harga
+                    </label>
+
+                    <input
+                        type="number"
+                        name="harga_barang"
+                        id="edit_harga_barang"
+                        class="w-full border border-gray-300 rounded px-4 py-2"
+                    >
+
+                </div>
+
+                <div class="mb-6">
+
+                    <label class="block mb-2">
+                        Jumlah
+                    </label>
+
+                    <input
+                        type="number"
+                        name="jumlah"
+                        id="edit_jumlah"
+                        class="w-full border border-gray-300 rounded px-4 py-2"
+                    >
+
+                </div>
+
+                <div class="flex justify-end gap-2">
+
+                    <button
+                        type="button"
+                        onclick="closeModal()"
+                        class="bg-gray-300 hover:bg-gray-400 px-4 py-2 rounded"
+                    >
+                        Batal
+                    </button>
+
+                    <button
+                        type="submit"
+                        class="bg-blue-500 hover:bg-blue-600 text-white px-4 py-2 rounded"
+                    >
+                        Update
+                    </button>
+
+                </div>
+
+            </form>
+
+        </div>
+
+    </div>
+
     <script>
 
-        const selectBarang = document.getElementById("list_barang");
+        function openModal(
+            id,
+            kode,
+            nama,
+            harga,
+            jumlah
+        ) {
 
-        const inputKodeBarang = document.getElementById("kode_barang");
+            document
+                .getElementById('editModal')
+                .classList
+                .remove('hidden');
 
-        const inputNamaBarang = document.getElementById("nama_barang");
+            document
+                .getElementById('editModal')
+                .classList
+                .add('flex');
 
-        const inputHargaBarang = document.getElementById("harga_barang");
+            document
+                .getElementById('editForm')
+                .action =
+                    `/dashboard/barang/update/${id}`;
 
-        const inputJumlahBarang = document.getElementById("jumlah");
+            document
+                .getElementById('edit_kode_barang')
+                .value = kode;
 
-        let daftarBarang = @json($list_barang);
+            document
+                .getElementById('edit_nama_barang')
+                .value = nama;
 
-        selectBarang.addEventListener("change", function () {
+            document
+                .getElementById('edit_harga_barang')
+                .value = harga;
 
-            let barang = daftarBarang[selectBarang.value];
+            document
+                .getElementById('edit_jumlah')
+                .value = jumlah;
+        }
 
-            if (barang) {
+        function closeModal() {
 
-                inputKodeBarang.value = selectBarang.value;
+            document
+                .getElementById('editModal')
+                .classList
+                .remove('flex');
 
-                inputNamaBarang.value = barang.nama;
-
-                inputHargaBarang.value = barang.harga;
-            }
-
-        });
+            document
+                .getElementById('editModal')
+                .classList
+                .add('hidden');
+        }
 
     </script>
 

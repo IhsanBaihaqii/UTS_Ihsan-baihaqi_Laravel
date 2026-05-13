@@ -1,31 +1,51 @@
 <?php
 
-use App\Http\Controllers\BarangController;
+use Illuminate\Support\Facades\Route;
+
 use App\Http\Controllers\LoginController;
 use App\Http\Controllers\LogoutController;
 use App\Http\Controllers\DashboardController;
-use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\BarangController;
 
 Route::get('/', function () {
     return view('welcome');
 });
 
-// Fungsi Login
-Route::get('/login', [LoginController::class, "index"])->name("login.index");
-Route::post('/login', [LoginController::class, "proses"])->name("login.proses");
 
-// Fungsi Logout
-Route::get('/logout', [LogoutController::class, "index"])->name("logout.index");
+// LOGIN
+Route::get('/login', [LoginController::class, 'index'])
+    ->name('login.index');
 
-// Dashboard
+Route::post('/login', [LoginController::class, 'proses'])
+    ->name('login.proses');
+
+// LOGOUT
+Route::get('/logout', [LogoutController::class, 'index'])
+    ->name('logout.index');
+
+// DASHBOARD
 Route::get('/dashboard', [DashboardController::class, 'index'])
     ->name('dashboard.index');
-Route::get('/dashboard/barang', [DashboardController::class, 'index']);
-Route::post('/dashboard/barang', [DashboardController::class, 'aksi'])
-    ->name('dashboard.barang.aksi');
+
+
+// CRUD BARANG
+// Tampilkan halaman barang
+Route::get('/dashboard/barang', [BarangController::class, 'index'])
+    ->name('barang.index');
+
+// Simpan barang
+Route::post('/dashboard/barang/store', [BarangController::class, 'store'])
+    ->name('barang.store');
+
+// Update barang
+Route::put('/dashboard/barang/update/{id}', [BarangController::class, 'update'])
+    ->name('barang.update');
+
+// Hapus barang
+Route::delete('/dashboard/barang/delete/{id}', [BarangController::class, 'destroy'])
+    ->name('barang.destroy');
+
+
+// RESET
 Route::get('/dashboard/reset', [DashboardController::class, 'reset'])
     ->name('dashboard.reset');
-
-Route::get('/barang', [BarangController::class, "index"])->name("barang.index");
-
-
