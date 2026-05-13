@@ -1,3 +1,7 @@
-## Remake PHP > Laravel
+## TUGAS UTS
 
-Membuat ulang Ripositories saya [UTS_WEB1_IhsanBaihaqi (PHP)](https://github.com/IhsanBaihaqii/UTS_WEB1_IhsanBaihaqi) menjadi bentuk [Laravel](https://laravel.com/)
+Nama : [Ihsan Baihaqi](https://ihsanbaihaqii.vercel.app).
+
+Kelas : 24M11
+
+NIM : 24012217
