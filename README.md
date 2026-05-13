@@ -27,3 +27,7 @@ NIM : 24012217
 ### Tampilan Barang Update
 
 ![Preview](screenshoot/barang-update.png)
+
+### Tampilan Barang Delete
+
+![Preview](screenshoot/barang-delete.png)
