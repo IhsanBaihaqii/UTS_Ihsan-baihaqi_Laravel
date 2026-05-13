@@ -19,3 +19,7 @@ NIM : 24012217
 ### Tampilan Barang Read
 
 ![Preview](screenshoot/barang-read.png)
+
+### Tampilan Barang Create
+
+![Preview](screenshoot/barang-create.png)
