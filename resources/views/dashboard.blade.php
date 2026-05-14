@@ -55,11 +55,11 @@
                     </a>
 
                     <a
-                        href="{{ url('/dashboard/pelanggan') }}"
+                        href="{{ url('/dashboard/users') }}"
                         class="block py-2 px-4 rounded hover:bg-gray-700 transition duration-200
                         {{ request()->is('dashboard/pelanggan') ? 'bg-gray-700' : '' }}"
                     >
-                        Pelanggan
+                        User
                     </a>
 
                     <a
@@ -101,9 +101,9 @@
 
                 @include('dashboard.barang')
 
-            @elseif (request()->is('dashboard/pelanggan'))
+            @elseif (request()->is('dashboard/users'))
 
-                @include('dashboard.pelanggan')
+                @include('dashboard.user')
 
             @elseif (request()->is('dashboard/transaksi'))
 
