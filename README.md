@@ -4,7 +4,7 @@
 
 | Keterangan | Detail                                            |
 | ---------- | ------------------------------------------------- |
-| Nama       | [Ihsan Baihaqi](https://ihsanbaihaqii.vercel.app) |
+| Nama       | [Ihsan Baihaqi](https://ihsanbaihaqi.vercel.app) |
 | Kelas      | 24M11                                             |
 | NIM        | 24012217                                          |
 
@@ -136,4 +136,4 @@ php artisan serve
 
 ## Author
 
-[Ihsan Baihaqi](https://ihsanbaihaqii.vercel.app)
+[Ihsan Baihaqi](https://ihsanbaihaqi.vercel.app)
