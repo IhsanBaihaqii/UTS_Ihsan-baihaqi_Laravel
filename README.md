@@ -1,33 +1,139 @@
-## TUGAS UTS
+# TUGAS UTS - CRUD Laravel
 
-Nama : [Ihsan Baihaqi](https://ihsanbaihaqii.vercel.app).
+## Informasi Mahasiswa
 
-Kelas : 24M11
+| Keterangan | Detail                                            |
+| ---------- | ------------------------------------------------- |
+| Nama       | [Ihsan Baihaqi](https://ihsanbaihaqii.vercel.app) |
+| Kelas      | 24M11                                             |
+| NIM        | 24012217                                          |
 
-NIM : 24012217
+---
 
-## TAMPILAN
+## Deskripsi Project
 
-### Tampilan Login
+Project ini merupakan tugas UTS berbasis  
+PHP dan Laravel yang berisi fitur CRUD:
 
-![Preview](screenshoot/login.png)
+- CRUD Users
+- CRUD Barang
+- Login & Logout
+- Session Authentication
+- Dashboard Admin
 
-### Tampilan Home
+---
 
-![Preview](screenshoot/home.png)
+## Teknologi Yang Digunakan
 
-### Tampilan Barang Read
+- PHP
+- Laravel
+- Tailwind CSS
+- MySQL
 
-![Preview](screenshoot/barang-read.png)
+---
 
-### Tampilan Barang Create
+## Fitur
 
-![Preview](screenshoot/barang-create.png)
+- Login
+- Logout
 
-### Tampilan Barang Update
+### CRUD Users
 
-![Preview](screenshoot/barang-update.png)
+- Tambah user
+- Edit user
+- Hapus user
+- Role user & admin
 
-### Tampilan Barang Delete
+### CRUD Barang
 
-![Preview](screenshoot/barang-delete.png)
+- Tambah barang
+- Edit barang
+- Hapus barang
+
+---
+
+## Tampilan Project
+
+[Lihat Semua Screenshot](/screenshoot/)
+
+## CRUD Users
+
+### Create User
+
+![Create User](screenshoot/user-create.png)
+
+### Delete User
+
+![Delete User](screenshoot/user-delete.png)
+
+### Edit User
+
+![Edit User](screenshoot/user-edit.png)
+
+---
+
+## CRUD Barang
+
+### Create Barang
+
+![Create Barang](screenshoot/barang-create.png)
+
+### Edit Barang
+
+![Edit Barang](screenshoot/barang-edit.png)
+
+### Delete Barang
+
+![Delete Barang](screenshoot/barang-delete.png)
+
+---
+
+## Cara Menjalankan Project
+
+### Clone Repository
+
+```bash
+git clone https://github.com/IhsanBaihaqii/UTS_Ihsan-baihaqi_Laravel.git
+```
+
+### Masuk Ke Folder Project
+
+```bash
+cd UTS_Ihsan-baihaqi_Laravel
+```
+
+### Install Dependency
+
+```bash
+composer install
+```
+
+### Copy File ENV
+
+```bash
+cp .env.example .env
+```
+
+### Generate Key
+
+```bash
+php artisan key:generate
+```
+
+### Migration Database
+
+```bash
+php artisan migrate
+```
+
+### Jalankan Laravel
+
+```bash
+php artisan serve
+```
+
+---
+
+## Author
+
+[Ihsan Baihaqi](https://ihsanbaihaqii.vercel.app)
