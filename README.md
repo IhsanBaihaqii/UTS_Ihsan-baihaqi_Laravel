@@ -80,7 +80,7 @@ PHP dan Laravel yang berisi fitur CRUD:
 
 ### Edit Barang
 
-![Edit Barang](screenshoot/barang-edit.png)
+![Edit Barang](screenshoot/barang-update.png)
 
 ### Delete Barang
 
